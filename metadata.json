@@ -1,0 +1,5 @@
+{
+  "name": "Zenith Physics Billiards",
+  "description": "A 100% original, code-generated physics simulation of cue sports. Featuring a custom AI engine, unique procedural ball rendering, and a bespoke high-performance mathematical model. Designed for independent play without third-party asset dependencies.",
+  "requestFramePermissions": []
+}
