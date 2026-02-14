@@ -31,6 +31,77 @@
   <script type="module" crossorigin src="/assets/index-BLjlfEX-.js"></script>
 </head>
 <body>
-    <div id="root"></div>
+    <div id="root">
+        <!-- Loading Screen -->
+        <div id="loading-screen" class="fixed inset-0 bg-[#020617] flex flex-col items-center justify-center transition-opacity duration-500">
+            <!-- Logo -->
+            <div class="mb-8 animate-pulse">
+                <h1 class="text-4xl font-black tracking-[0.3em] text-slate-200 italic">ZENITH V</h1>
+                <p class="text-emerald-500 text-[10px] tracking-[0.4em] font-bold uppercase italic text-center mt-2">Physics Master Edition</p>
+            </div>
+
+            <!-- Spinner -->
+            <div class="relative w-16 h-16 mb-6">
+                <div class="absolute inset-0 border-4 border-slate-800 rounded-full"></div>
+                <div class="absolute inset-0 border-4 border-transparent border-t-emerald-500 rounded-full animate-spin"></div>
+            </div>
+
+            <!-- Loading Text -->
+            <div class="text-slate-400 text-sm font-medium tracking-wider">
+                Loading<span class="loading-dots"></span>
+            </div>
+        </div>
+
+        <style>
+            @keyframes dots {
+                0%, 20% { content: ''; }
+                40% { content: '.'; }
+                60% { content: '..'; }
+                80%, 100% { content: '...'; }
+            }
+
+            .loading-dots::after {
+                content: '';
+                animation: dots 1.5s steps(4, end) infinite;
+            }
+
+            @keyframes spin {
+                to { transform: rotate(360deg); }
+            }
+
+            .animate-spin {
+                animation: spin 1s linear infinite;
+            }
+
+            @keyframes pulse {
+                0%, 100% { opacity: 1; }
+                50% { opacity: 0.6; }
+            }
+
+            .animate-pulse {
+                animation: pulse 2s ease-in-out infinite;
+            }
+
+            .fade-out {
+                opacity: 0;
+                pointer-events: none;
+            }
+        </style>
+
+        <script>
+            // Remove loading screen once React app is mounted
+            window.addEventListener('DOMContentLoaded', function() {
+                setTimeout(function() {
+                    const loadingScreen = document.getElementById('loading-screen');
+                    if (loadingScreen) {
+                        loadingScreen.classList.add('fade-out');
+                        setTimeout(function() {
+                            loadingScreen.remove();
+                        }, 500);
+                    }
+                }, 100);
+            });
+        </script>
+    </div>
 </body>
 </html>
